@@ -58,24 +58,25 @@ app.post('/add-employee', (req, res) => {
   });
 });
 
-app.delete('/employees/:employeeID', (req, res) => {
-  const employeeID = req.params.employeeID;
+app.delete('/employees/:id', (req, res) => {
+  const { id } = req.params;
   pool.getConnection((err, connection) => {
-    if (err) {
+    if (err) {  
       console.error('Error getting connection from db', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
     const sql = 'DELETE FROM employees WHERE employeeID = ?';
-    connection.query(sql, [employeeID], (err, results) => {
+    connection.query(sql, [id], (err, results) => {
       connection.release();
       if (err) {
         console.error('Error executing query:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
-      res.sendStatus(204);
+      res.sendStatus(204); // No content
     });
   });
 });
+
 
 const port = 5205;
 app.listen(port, () => {

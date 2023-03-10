@@ -13,21 +13,24 @@ fetch('/employees')
         <td>${employee.address}</td>
         <td>${employee.role}</td>
         <td>${employee.pay}</td>
-        <td><button>Edit</button> 
-        <button data-id="${employee.employeeID}" class="del-employee">Delete</button>
-        </td>
-      `;
+        <td><button onclick="deleteEmployee(${employee.employeeID})">Delete</button></td>
+        `;
       table.appendChild(row);
     });
   });
-   const deleteButton = document.querySelectorAll('.del-employee')
-   deleteButton.forEach(Button => {
-    Button.addEventListener('click', (event) => {
-      const employeeID = event.target.getAttribute('data-id');
-      fetch(`/employees/${employeeID}` , {method: 'DELETE'})
-      .then(response => response.json())
-      .then(data => {
-        event.target.closest('tr').remove();
-      })
+
+function deleteEmployee(employeeID) {
+  if (confirm("Are you sure you want to delete this employee?")) {
+    fetch(`/employees/${employeeID}`, {
+      method: 'DELETE'
     })
-   })
+    .then(() => {
+      alert("Employee deleted successfully!");
+      location.reload();
+    })
+    .catch((error) => {
+      console.error('Error deleting employee:', error);
+      alert("Error deleting employee. Please try again later.");
+    });
+  }
+}
