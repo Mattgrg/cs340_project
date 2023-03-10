@@ -100,7 +100,7 @@ function editcustomer(customerID) {
 }
   
 
-function deletecustomer(customerID) {
+function deleteCustomer(customerID) {
   if (confirm("Are you sure you want to delete this customer?")) {
     fetch(`/customers/${customerID}`, {
       method: 'DELETE'
