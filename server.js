@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const pool = mysql.createPool({
     connectionLimit: 10,
@@ -19,6 +20,30 @@ const pool = mysql.createPool({
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/employee.html');
 });
+
+app.get('/employees/:id', (req, res) => {
+  const { id } = req.params;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting connection from db', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    const sql = 'SELECT * FROM employees WHERE employeeID = ?';
+    connection.query(sql, [id], (err, results) => {
+      connection.release();
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      if (results.length === 0) {
+        return res.status(404).json({ error: 'Employee not found' });
+      }
+      const employee = results[0];
+      res.json(employee);
+    });
+  });
+});
+
 
 app.get('/employees', (req, res) => {
     pool.getConnection((err, connection) => {
@@ -72,10 +97,32 @@ app.delete('/employees/:id', (req, res) => {
         console.error('Error executing query:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
-      res.sendStatus(204); // No content
+      res.sendStatus(204);
     });
   });
 });
+
+app.put('/employees/:id', (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, phone, email, address, role, pay } = req.body;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting connection from db', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    const sql = 'UPDATE employees SET firstName=?, lastName=?, phone=?, email=?, address=?, role=?, pay=? WHERE employeeID=?';
+    connection.query(sql, [firstName, lastName, phone, email, address, role, pay, id], (err, results) => {
+      connection.release();
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      console.log('Query results:', results);
+      res.sendStatus(204);
+    });
+  });
+});
+
 
 
 const port = 5205;
