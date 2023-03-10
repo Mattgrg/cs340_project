@@ -1,0 +1,75 @@
+<head>
+    <title>Items</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+</head>
+<header>
+	<nav>
+		<a href="index.html" class="button">Index</a>
+		<a href="customer.html" class="button">Customers</a>
+		<a href="employee.html" class="button">Employees</a>
+		<a href="items.html" class="button">Items</a>
+		<a href="order.html" class="button">Orders</a>
+        <a href="orderitems.html" class="button">Order Items</a>
+		<a href="search.html" class="button">Search</a>
+	</nav>
+</header>
+<body>
+	<div class="seperator"></div>
+	<fieldset class="cfieldset">
+		<form class="cform">
+			<label for="iname">Name:</label>
+			<input type="text" id="iname" name="iname"><br><br>
+			<label for="price">Price:</label>
+			<input type="number" id="price" name="price"><br><br>
+            <label for="restr">Restriction:</label>
+		    <input type="number" id="restr" name="restr"><br><br>
+			<input type="submit" value="Add">
+		</form>		
+		</fieldset>
+	<div class="seperator"></div>
+
+		<table>
+			<tr>
+				<th>id</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Restriction</th>
+                <th>Actions</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Fries</td>
+				<td>6.5</td>
+				<td>0</td>
+				<td>
+					<button>Edit</button>
+					<button>Delete</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Pepperoni Pizza</td>
+				<td>15.99</td>
+				<td>2</td>
+				<td>
+					<button>Edit</button>
+					<button>Delete</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Cheese Pizza</td>
+				<td>12.99</td>
+				<td>0</td>
+				<td>
+					<button>Edit</button>
+					<button>Delete</button>
+				</td>
+			</tr>
+		</table>
+		
+
+</body>
+</html>
+

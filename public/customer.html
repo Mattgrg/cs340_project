@@ -1,0 +1,83 @@
+<head>
+    <title>Customers</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+</head>
+<header>
+	<nav>
+		<a href="index.html" class="button">Index</a>
+		<a href="customer.html" class="button">Customers</a>
+		<a href="employee.html" class="button">Employees</a>
+		<a href="items.html" class="button">Items</a>
+		<a href="order.html" class="button">Orders</a>
+        <a href="orderitems.html" class="button">Order Items</a>
+		<a href="search.html" class="button">Search</a>
+	</nav>
+</header>
+<body>
+	<div class="seperator"></div>
+	<fieldset class="cfieldset">
+		<form class="cform">
+			<label for="firstname">First Name:</label>
+			<input type="text" id="firstname" name="firstname"><br><br>
+			<label for="lastname">Last Name:</label>
+			<input type="text" id="lastname" name="lastname"><br><br>
+			<label for="phone">Phone Number:</label>
+			<input type="text" id="phone" name="phone"><br><br>
+			<label for="address">Address:</label>
+			<textarea id="address" name="address" rows="2" cols="18"></textarea><br><br>			
+			<label for="email">Email:</label>
+			<input type="text" id="email" name="email"><br><br>
+			<input type="submit" value="Add">
+		</form>		
+		</fieldset>
+	<div class="seperator"></div>
+
+		<table class = "custtable">
+			<tr>
+				<th>id</th>
+				<th>Name</th>
+				<th>Phone Number</th>
+				<th colspan="2">Address</th>
+				<th>Email</th>
+				<th>Actions</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>John, Wick</td>
+				<td>5489879874</td>
+				<td colspan="2">3 Babayaga Dr: houston: TX</td>
+				<td>Johnwick12@gmail.com</td>
+				<td>
+					<button>Edit</button>
+					<button>Delete</button>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Luke, Skywalker</td>
+				<td>4879842321</td>
+				<td colspan="2">6 Sabre St: suite 12: Houston: TX</td>
+				<td>mydadisntvader@yahoo.com</td>
+				<td>
+					<button>Edit</button>
+					<button>Delete</button>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Peter, Parker</td>
+				<td>5568875235</td>
+				<td colspan="2">56 Spider Dr: houston: TX</td>
+				<td>fakewebs@gmail.com</td>
+				<td>
+					<button>Edit</button>
+					<button>Delete</button>
+				</td>
+			</tr>
+		</table>
+		
+
+</body>
+</html>
+

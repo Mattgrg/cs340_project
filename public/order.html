@@ -1,0 +1,99 @@
+<head>
+    <title>Orders</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+</head>
+<header>
+	<nav>
+		<a href="index.html" class="button">Index</a>
+		<a href="customer.html" class="button">Customers</a>
+		<a href="employee.html" class="button">Employees</a>
+		<a href="items.html" class="button">Items</a>
+		<a href="order.html" class="button">Orders</a>
+        <a href="orderitems.html" class="button">Order Items</a>
+		<a href="search.html" class="button">Search</a>
+	</nav>
+</header>
+<body>
+	<div class="seperator"></div>
+	<fieldset class="cfieldset">
+		<form class="cform">
+		<label for="fries">French Fries:</label>
+		<input type="number" id="fries" name="fries" value="0" min="0" max="10"><br><br>
+		<label for="pizza">Pizza:</label>
+		<input type="number" id="pizza" name="pizza" value="0" min="0" max="10"><br><br>
+		<label for="spaghetti">Spaghetti:</label>
+		<input type="number" id="spaghetti" name="spaghetti" value="0" min="0" max="10"><br><br>
+		<label for="lasagna">Lasagna:</label>
+		<input type="number" id="lasagna" name="lasagna" value="0" min="0" max="10"><br><br>
+		<label for="curry">Curry:</label>
+		<input type="number" id="curry" name="curry" value="0" min="0" max="100"><br><br>
+		<label for="meatstew">Meat Stew:</label>
+		<input type="number" id="meatstew" name="meatstew" value="0" min="0" max="100"><br><br>
+        <label for="employee">Assign Employee:</label><br><br>
+            <select name="employee" id="employee">
+            <option value="employee1">employee1</option>
+            <option value="employee2">employee2</option>
+            <option value="employee3">employee3</option>
+            <option value="employee4">employee4</option>
+            </select><br><br>
+        <label for="customer">Assign Customer:</label><br><br>
+            <select name="employee" id="customer">
+            <option value="customer1">customer1</option>
+            <option value="customer2">customer2</option>
+            <option value="customer3">customer3</option>
+            <option value="customer4">customer4</option>
+            </select>
+        <br></br>
+        <input type="submit" value="Submit">
+	</form>		
+	</fieldset>
+	<div class="seperator"></div>
+	<table border="1" width="60%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<tr>
+			<th>id</th>
+			<th>CustomerID</th>
+			<th>EmployeeID</th>
+			<th>Date</th>
+			<th>Total</th>
+			<th>Order Details</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td>1</td>
+			<td>2023-2-7</td>
+			<td>130</td>
+			<td>
+				<button>Go</button>
+			</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>2</td>
+			<td>1</td>
+			<td>2023-2-7</td>
+			<td>15.99</td>
+			<td>
+				<button>Go</button>
+			</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>3</td>
+			<td>3</td>
+			<td>2023-2-8</td>
+			<td>15.77</td>
+			<td>
+				<button>Go</button>
+			</td>
+		</tr>
+	</table>
+<div class="seperator"></div>
+</body>

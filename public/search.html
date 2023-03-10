@@ -1,0 +1,55 @@
+<head>
+    <title>Search</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+</head>
+<header>
+	<nav>
+		<a href="index.html" class="button">Index</a>
+		<a href="customer.html" class="button">Customers</a>
+		<a href="employee.html" class="button">Employees</a>
+		<a href="items.html" class="button">Items</a>
+		<a href="order.html" class="button">Orders</a>
+        <a href="orderitems.html" class="button">Order Items</a>
+		<a href="search.html" class="button">Search</a>
+	</nav>
+</header>
+<body>
+    <div class="seperator"></div>
+    <fieldset class="cfieldset">
+    <legend>Customer Search</legend>
+    <form class="cform">
+        <label for="firstname">First Name:</label>
+		<input type="text" id="firstname" name="firstname"><br><br>
+		<label for="lastname">Last Name:</label>
+		<input type="text" id="lastname" name="lastname"><br><br>
+		<input type="submit" value="Search">
+	</form>
+    </fieldset>
+    <fieldset class="cfieldset">
+    <legend>Employee Search</legend>
+    <form class="cform">
+        <label for="firstname">First Name:</label>
+		<input type="text" id="firstname" name="firstname"><br><br>
+		<label for="lastname">Last Name:</label>
+		<input type="text" id="lastname" name="lastname"><br><br>
+		<input type="submit" value="Search">
+	</form>
+    </fieldset>
+    <fieldset class="cfieldset">
+        <legend>id Search</legend>
+		<form class="cform">
+            <label for="id">id:</label>
+            <input type="number" id="id" name="id"><br><br>
+            <label for="idtype">id Type:</label>
+            <select name="idtype" id="idtype">
+            <option value="t1">Employee</option>
+            <option value="t2">Customer</option>
+            <option value="t3">Order</option>
+            <option value="t4">Item</option>
+            </select><br><br>
+            <input type="submit" value="Search">    
+        </form>
+        </fieldset>
+    
+</body>
