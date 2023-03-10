@@ -16,7 +16,7 @@ const pool = mysql.createPool({
     port: 4000,
   });
   
-  
+// employee  
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/employee.html');
 });
@@ -123,6 +123,7 @@ app.put('/employees/:id', (req, res) => {
   });
 });
 
+// customer
 
 
 const port = 5205;
