@@ -9,8 +9,8 @@ fetch('/employees')
         <td>${employee.employeeID}</td>
         <td>${employee.firstName} ${employee.lastName}</td>
         <td>${employee.phone}</td>
-        <td>${employee.email}</td>
         <td>${employee.address}</td>
+        <td>${employee.email}</td>
         <td>${employee.role}</td>
         <td>${employee.pay}</td>
         <td><button onclick="deleteEmployee(${employee.employeeID})">Delete</button></td>
