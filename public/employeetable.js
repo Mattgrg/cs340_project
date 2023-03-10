@@ -24,7 +24,7 @@ fetch('/employees')
    deleteButton.forEach(Button => {
     Button.addEventListener('click', (event) => {
       const employeeID = event.target.getAttribute('data-id');
-      fetch('/employees/${employeeID}' , {method: 'DELETE'})
+      fetch(`/employees/${employeeID}` , {method: 'DELETE'})
       .then(response => response.json())
       .then(data => {
         event.target.closest('tr').remove();
