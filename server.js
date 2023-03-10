@@ -79,5 +79,5 @@ app.delete('/employees/:employeeID', (req, res) => {
 
 const port = 5205;
 app.listen(port, () => {
-  console.log('Server listening on port 3000');
+  console.log('Server listening on port 5205');
 });
