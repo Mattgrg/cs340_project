@@ -16,14 +16,14 @@
 </header>
 <body>
 	<div class="seperator"></div>
-	<fieldset class="cfieldset">
+	<fieldset class="cfieldset" action="/add-item" method="post">
 		<form class="cform">
-			<label for="iname">Name:</label>
-			<input type="text" id="iname" name="iname"><br><br>
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name"><br><br>
 			<label for="price">Price:</label>
 			<input type="number" id="price" name="price"><br><br>
-            <label for="restr">Restriction:</label>
-		    <input type="number" id="restr" name="restr"><br><br>
+            <label for="restriction">Restriction:</label>
+		    <input type="number" id="restriction" name="restriction"><br><br>
 			<input type="submit" value="Add">
 		</form>		
 		</fieldset>
@@ -34,7 +34,6 @@
 			<th>ID</th>
 			<th>Name</th>
 			<th>Price</th>
-			<th>Address</th>
 			<th>Restriction</th>
 		  </tr>
 		</thead>
