@@ -35,7 +35,9 @@ function editItem(itemID) {
           <br>
           <label for="restriction">Restriction:</label>
           <input type="text" id="restriction" name="restriction" value="${item.restriction}">
-        `;
+          <br>
+          <button type="submit">Save</button>
+          `;
         
         // add event listener for form submission
         form.addEventListener('submit', event => {
