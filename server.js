@@ -454,6 +454,33 @@ app.get('/orderitems/:orderId', (req, res) => {
 
 
 //Search
+app.get('/customersearch', (req, res) => {
+  const { firstName, lastName } = req.query;
+  const sql = 'SELECT * FROM customers WHERE firstName LIKE ? AND lastName LIKE ?';
+  const values = [`%${firstName}%`, `%${lastName}%`];
+  pool.query(sql, values, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    res.json(results);
+  });
+});
+
+
+app.get('/employeesearch', (req, res) => {
+  const { firstName, lastName } = req.query;
+  const sql = 'SELECT * FROM employees WHERE firstName LIKE ? AND lastName LIKE ?';
+  const values = [`%${firstName}%`, `%${lastName}%`];
+  pool.query(sql, values, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    res.json(results);
+  });
+});
+
 
 
 
