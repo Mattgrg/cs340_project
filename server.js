@@ -17,6 +17,7 @@ const pool = mysql.createPool({
   });
   
 // employee  
+// employee  
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/employee.html');
 });
@@ -78,7 +79,7 @@ app.post('/add-employee', (req, res) => {
         console.error('Error executing query:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
-      res.redirect('/');
+      res.redirect('/employee.html');
     });
   });
 });
@@ -128,7 +129,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/customer.html');
 });
 
-app.get('/customer/:id', (req, res) => {
+app.get('/customers/:id', (req, res) => {
   const { id } = req.params;
   pool.getConnection((err, connection) => {
     if (err) {
@@ -143,7 +144,7 @@ app.get('/customer/:id', (req, res) => {
         return res.status(500).json({ error: 'Internal server error' });
       }
       if (results.length === 0) {
-        return res.status(404).json({ error: 'Employee not found' });
+        return res.status(404).json({ error: 'customer not found' });
       }
       const employee = results[0];
       res.json(employee);
@@ -185,7 +186,7 @@ app.post('/add-customer', (req, res) => {
         console.error('Error executing query:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
-      res.redirect('/');
+      res.redirect('/customer.html');
     });
   });
 });
@@ -217,8 +218,8 @@ app.put('/customers/:id', (req, res) => {
       console.error('Error getting connection from db', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
-    const sql = 'UPDATE customers SET firstName=?, lastName=?, phone=?, email=?, address=? WHERE customersID=?';
-    connection.query(sql, [firstName, lastName, phone, email, address], (err, results) => {
+    const sql = 'UPDATE customers SET firstName=?, lastName=?, phone=?, email=?, address=? WHERE customerID=?';
+    connection.query(sql, [firstName, lastName, phone, email, address, id], (err, results) => {
       connection.release();
       if (err) {
         console.error('Error executing query:', err);
@@ -325,8 +326,8 @@ app.put('/items/:id', (req, res) => {
       console.error('Error getting connection from db', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
-    const sql = 'UPDATE items SET name=?, price=?, restriction=?';
-    connection.query(sql, [name, price, restriction], (err, results) => {
+    const sql = 'UPDATE items SET name=?, price=?, restriction=? WHERE itemID=?';
+    connection.query(sql, [name, price, restriction, id], (err, results) => {
       connection.release();
       if (err) {
         console.error('Error executing query:', err);
@@ -337,6 +338,101 @@ app.put('/items/:id', (req, res) => {
     });
   });
 });
+
+// Orders 
+app.get('/orders/:id', (req, res) => {
+  const { id } = req.params;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting connection from db', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    const sql = 'SELECT * FROM orders WHERE orderID = ?';
+    connection.query(sql, [id], (err, results) => {
+      connection.release();
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      if (results.length === 0) {
+        return res.status(404).json({ error: 'Order not found' });
+      }
+      const order = results[0];
+      res.json(order);
+    });
+  });
+});
+
+app.get('/orders', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting connection from db', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    const sql = 'SELECT orderID, customerID, employeeID,total , DATE_FORMAT(date, "%Y-%m-%d") as date FROM orders';
+    connection.query(sql, (err, results) => {
+      connection.release();
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      res.json(results);
+    });
+  });
+});
+
+app.post('/add-order', (req, res) => {
+  console.log(req.body);
+  const { items, customer, employee, total } = req.body;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting connection from db', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    const sql = 'INSERT INTO orders (customerID, employeeID, date, total) VALUES (?, ?, CURRENT_DATE(), ?)';
+    connection.query(sql, [customer, employee, total], (err, results) => {
+      if (err) {
+        connection.release();
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      const orderID = results.insertId;
+      const itemsSql = 'INSERT INTO orderItems (orderID, itemID, number) VALUES ?';
+      const orderItemsValues = items.map(item => [orderID, item.itemID, item.itemCount]);
+      connection.query(itemsSql, [orderItemsValues], (err, results) => {
+        connection.release();
+        if (err) {
+          console.error('Error executing query:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.redirect('/order.html');
+      });
+    });
+  });
+});
+
+app.delete('/orders/:id', (req, res) => {
+  const { id } = req.params;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting connection from db', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    const sql = 'DELETE FROM orders WHERE orderID = ?';
+    connection.query(sql, [id], (err, results) => {
+      connection.release();
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      res.sendStatus(204);
+    });
+  });
+});
+
+
+
+// Orderitems
 
 
 

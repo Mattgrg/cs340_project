@@ -90,18 +90,19 @@ function editItem(itemID) {
     });
 }
 
-function deleteitem(itemID) {
-  if (confirm("Are you sure you want to delete this item?")) {
+function deleteItem(itemID) {
+  if (confirm("Are you sure you want to delete this Item?")) {
     fetch(`/items/${itemID}`, {
       method: 'DELETE'
     })
     .then(() => {
-      alert("item deleted successfully!");
+      alert("Item deleted successfully!");
       location.reload();
     })
     .catch((error) => {
-      console.error('Error deleting item:', error);
-      alert("Error deleting item. Please try again later.");
+      console.error('Error deleting Item:', error);
+      alert("Error deleting Item. Please try again later.");
     });
   }
-}
+};
+
