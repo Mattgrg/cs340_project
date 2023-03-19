@@ -433,6 +433,27 @@ app.delete('/orders/:id', (req, res) => {
 
 
 // Orderitems
+app.get('/orderitems/:orderId', (req, res) => {
+  const orderId = req.params.orderId;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting connection from db', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    const sql = 'SELECT * FROM orderitems WHERE orderID = ?';
+    connection.query(sql, [orderId], (err, results) => {
+      connection.release();
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      res.json(results);
+    });
+  });
+});
+
+
+//Search
 
 
 
