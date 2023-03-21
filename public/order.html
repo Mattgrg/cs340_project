@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <title>Orders</title>
     <link rel="stylesheet" href="style.css">
@@ -18,6 +16,7 @@
 </header>
 <div class="seperator"></div>
 <fieldset class="cfieldset">
+    <!-- form for adding a new order, items are dynamically generated from the items using orderform.js -->
     <form id="order-form">
         <div id="items-container">
         </div>
@@ -37,6 +36,7 @@
 <div class="seperator"></div>
 <table class="custtable">
     <thead>
+        <!-- table generated for all orders using ordertable.js -->
         <tr>
             <th>ID</th>
             <th>CustomerID</th>

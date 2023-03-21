@@ -1,6 +1,6 @@
 const table = document.querySelector('.custtable');
 
-
+// genrates the order table after festching data from the db 
 fetch('/orders')
   .then(response => response.json())
   .then(data => {
@@ -20,6 +20,7 @@ fetch('/orders')
   });
 });
 
+// adds delete functionality to the delete button 
 function deleteorder(orderID) {
   if (confirm("Are you sure you want to delete this order?")) {
     fetch(`/orders/${orderID}`, {

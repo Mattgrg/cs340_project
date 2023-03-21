@@ -22,7 +22,7 @@ fetch('/customers')
 });
 
 function editcustomer(customerID) {
-    // fetch customer data from the server
+    // fetch customer data from server
     fetch(`/customers/${customerID}`)
       .then(response => response.json())
       .then(customer => {
@@ -60,7 +60,7 @@ function editcustomer(customerID) {
             address: form.address.value,
           };
             
-          // send PUT request to update the customer in the database
+          // send put request to update the customer in the database
           fetch(`/customers/${customerID}`, {
             method: 'PUT',
             headers: {

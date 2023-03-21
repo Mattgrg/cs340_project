@@ -17,7 +17,6 @@ const pool = mysql.createPool({
   });
   
 // employee  
-// employee  
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/employee.html');
 });
